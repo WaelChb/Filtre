@@ -50,6 +50,7 @@ namespace applicationFiltre.Controllers
           
 
             var resultatsFiltres = new List<string>();
+            
 
             // Logique de filtrage des résultats en fonction des cases cochées
             if (checkbox1 == true)
@@ -83,6 +84,14 @@ namespace applicationFiltre.Controllers
                 checkboxAutreValue = "";
                 ViewBag.checkboxAutreValue = checkboxAutreValue;
             }
+//----------------------------------------------------------------------------------------------------------------------------
+
+  
+            ViewBag.checkBoxValue1 = checkBoxValue1;
+            ViewBag.checkBoxValue2 = checkBoxValue2;
+            ViewBag.checkBoxValue3 = checkBoxValue3;
+            ViewBag.checkboxLafayetteValue = checkboxLafayetteValue;
+            ViewBag.checkboxAutreValue = checkboxAutreValue;
 
             List<OrderCount> model = FiltreServices.GetOrderCounts(checkBoxValue1, checkBoxValue2, checkBoxValue3, checkboxLafayetteValue, checkboxAutreValue);
 

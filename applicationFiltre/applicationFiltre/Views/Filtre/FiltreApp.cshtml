@@ -46,17 +46,41 @@
                                     <input type="hidden" name="checkboxAutreValue" value="@ViewBag.checkboxAutreValue" />
                                     <div>
                                         <label onclick="this.form.submit();">
-                                            @Html.CheckBox("checkbox1", false)
+                                            @if (ViewBag.checkBoxValue1 == "1")
+                                            {
+                                                @Html.CheckBox("checkbox1", true)
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBox("checkbox1", false)
+
+                                            }
                                             1
                                         </label>
                                         <br />
                                         <label onclick="this.form.submit();">
-                                            @Html.CheckBox("checkbox2", false)
+                                            @if (ViewBag.checkBoxValue2 == "4")
+                                            {
+                                                @Html.CheckBox("checkbox2", true)
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBox("checkbox2", false)
+
+                                            }
                                             4
                                         </label>
                                         <br />
                                         <label onclick="this.form.submit();">
-                                            @Html.CheckBox("checkbox3", false)
+                                            @if (ViewBag.checkBoxValue3 == "9")
+                                            {
+                                                @Html.CheckBox("checkbox3", true)
+                                            }
+                                            else
+                                            {
+                                                @Html.CheckBox("checkbox3", false)
+
+                                            }
                                             9
                                         </label>
                                     </div>
@@ -86,12 +110,29 @@
                                 <input type="hidden" name="checkBoxValue3" value="@ViewBag.checkBoxValue3" />
                                 <div>
                                     <label onclick="this.form.submit();">
-                                        @Html.CheckBox("checkboxLafayette", false)
+
+                                        @if (ViewBag.checkboxLafayetteValue == "L13")
+                                        {
+                                            @Html.CheckBox("checkboxLafayette", true)
+                                        }
+                                        else
+                                        {
+                                            @Html.CheckBox("checkboxLafayette", false)
+
+                                        }
                                         La Fayette
                                     </label>
                                     <br />
                                     <label onclick="this.form.submit();">
-                                        @Html.CheckBox("checkboxAutre", false)
+                                        @if (ViewBag.checkboxAutreValue == " ")
+                                        {
+                                            @Html.CheckBox("checkboxAutre", true)
+                                        }
+                                        else
+                                        {
+                                            @Html.CheckBox("checkboxAutre", false)
+
+                                        }
                                         Autre
                                     </label>
 
