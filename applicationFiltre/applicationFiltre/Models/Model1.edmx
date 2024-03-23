@@ -1,0 +1,305 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ORDERS">
+          <Key>
+            <PropertyRef Name="ORDERS" />
+          </Key>
+          <Property Name="ORDERS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TYPETRANSACTION" Type="int" Nullable="false" />
+          <Property Name="ORDERCLIENT" Type="varchar" MaxLength="50" />
+          <Property Name="NOMCOLIS" Type="varchar" MaxLength="20" />
+          <Property Name="CODECLIENTLIVRE" Type="varchar" MaxLength="13" />
+          <Property Name="RS1" Type="varchar" MaxLength="40" />
+          <Property Name="ADR11" Type="varchar" MaxLength="70" />
+          <Property Name="ADR12" Type="varchar" MaxLength="35" />
+          <Property Name="CP1" Type="varchar" MaxLength="12" />
+          <Property Name="VILLE1" Type="varchar" MaxLength="34" />
+          <Property Name="PAYS1" Type="varchar" MaxLength="32" />
+          <Property Name="RS2" Type="varchar" MaxLength="32" />
+          <Property Name="ADR21" Type="varchar" MaxLength="35" />
+          <Property Name="ADR22" Type="varchar" MaxLength="35" />
+          <Property Name="CODETRANSPORTEUR" Type="varchar" MaxLength="13" />
+          <Property Name="COMMENTAIRE1" Type="varchar" MaxLength="80" />
+          <Property Name="COMMENTAIRE2" Type="varchar" MaxLength="80" />
+          <Property Name="COMMENTAIRE3" Type="varchar" MaxLength="80" />
+          <Property Name="COMMENTAIRE4" Type="varchar" MaxLength="80" />
+          <Property Name="POIDSCOLIS" Type="float" />
+          <Property Name="ETAT" Type="int" />
+          <Property Name="CompteExtand" Type="char" MaxLength="4" />
+          <Property Name="Emballage" Type="varchar" MaxLength="50" />
+          <Property Name="DateHeureFichier" Type="datetime" />
+          <Property Name="UtilisateurControle" Type="varchar" MaxLength="50" />
+          <Property Name="DateHeureControle" Type="datetime" />
+          <Property Name="ORD_D_CREATE" Type="datetime" />
+          <Property Name="NOMCLIENTFINAL" Type="varchar" MaxLength="50" />
+          <Property Name="DateCommandeX3" Type="varchar" MaxLength="50" />
+          <Property Name="HeureCommandeX3" Type="varchar" MaxLength="50" />
+          <Property Name="CentraleX3" Type="varchar" MaxLength="4" />
+          <Property Name="NbLigneCmdX3" Type="varchar" MaxLength="4" />
+          <Property Name="TransporteurX3" Type="varchar" MaxLength="10" />
+          <Property Name="ModeLivraisonX3" Type="varchar" MaxLength="3" />
+          <Property Name="PrioriteLivraisonX3" Type="varchar" MaxLength="1" />
+          <Property Name="PoidsNetX3" Type="varchar" MaxLength="6" />
+          <Property Name="CmdAvecRX" Type="varchar" MaxLength="1" />
+          <Property Name="PackagingX3" Type="int" />
+          <Property Name="InfoX3_1" Type="varchar" MaxLength="10" />
+          <Property Name="InfoX3_2" Type="varchar" MaxLength="10" />
+          <Property Name="InfoX3_3" Type="int" />
+          <Property Name="DateDescente" Type="varchar" MaxLength="10" />
+          <Property Name="HeureDescente" Type="varchar" MaxLength="4" />
+          <Property Name="PreAxe" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="POSITIONS">
+          <Key>
+            <PropertyRef Name="ORDERS" />
+            <PropertyRef Name="NUMEROLIGNE" />
+            <PropertyRef Name="IdTypePosition" />
+          </Key>
+          <Property Name="TYPETRANSACTION" Type="int" Nullable="false" />
+          <Property Name="ORDERS" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NUMEROLIGNE" Type="int" Nullable="false" />
+          <Property Name="ARTICLE" Type="varchar" MaxLength="50" />
+          <Property Name="DESIGNATION1" Type="varchar" MaxLength="40" />
+          <Property Name="DESIGNATION2" Type="varchar" MaxLength="40" />
+          <Property Name="QUANTITE" Type="int" />
+          <Property Name="INFO1" Type="varchar" MaxLength="80" />
+          <Property Name="INFO2" Type="varchar" MaxLength="80" />
+          <Property Name="INFO3" Type="varchar" MaxLength="80" />
+          <Property Name="INFO4" Type="varchar" MaxLength="80" />
+          <Property Name="INFO5" Type="varchar" MaxLength="80" />
+          <Property Name="INFO6" Type="varchar" MaxLength="80" />
+          <Property Name="ETAT" Type="int" />
+          <Property Name="CHECKED" Type="varchar" MaxLength="2" />
+          <Property Name="DATEI" Type="datetime" />
+          <Property Name="ZTYPACH" Type="varchar" MaxLength="50" />
+          <Property Name="POHNUM" Type="varchar" MaxLength="50" />
+          <Property Name="POPLIN" Type="int" />
+          <Property Name="IdTypePosition" Type="tinyint" Nullable="false" />
+          <Property Name="QUANTITERECU" Type="int" />
+          <Property Name="INFO7" Type="varchar" MaxLength="80" />
+        </EntityType>
+        <Function Name="GetOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="typeCommande" Type="varchar" Mode="In" />
+          <Parameter Name="centrale" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="WMSModelStoreContainer">
+          <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ORDERS">
+          <Key>
+            <PropertyRef Name="ORDERS1" />
+          </Key>
+          <Property Name="ORDERS1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TYPETRANSACTION" Type="Int32" Nullable="false" />
+          <Property Name="ORDERCLIENT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NOMCOLIS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CODECLIENTLIVRE" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="RS1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="ADR11" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="ADR12" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CP1" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="VILLE1" Type="String" MaxLength="34" FixedLength="false" Unicode="false" />
+          <Property Name="PAYS1" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="RS2" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ADR21" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="ADR22" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="CODETRANSPORTEUR" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Name="COMMENTAIRE1" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="COMMENTAIRE2" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="COMMENTAIRE3" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="COMMENTAIRE4" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="POIDSCOLIS" Type="Double" />
+          <Property Name="ETAT" Type="Int32" />
+          <Property Name="CompteExtand" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Emballage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateHeureFichier" Type="DateTime" Precision="3" />
+          <Property Name="UtilisateurControle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateHeureControle" Type="DateTime" Precision="3" />
+          <Property Name="ORD_D_CREATE" Type="DateTime" Precision="3" />
+          <Property Name="NOMCLIENTFINAL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateCommandeX3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="HeureCommandeX3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CentraleX3" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="NbLigneCmdX3" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="TransporteurX3" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ModeLivraisonX3" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="PrioriteLivraisonX3" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PoidsNetX3" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="CmdAvecRX" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="PackagingX3" Type="Int32" />
+          <Property Name="InfoX3_1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InfoX3_2" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InfoX3_3" Type="Int32" />
+          <Property Name="DateDescente" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="HeureDescente" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="PreAxe" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="POSITIONS">
+          <Key>
+            <PropertyRef Name="ORDERS" />
+            <PropertyRef Name="NUMEROLIGNE" />
+            <PropertyRef Name="IdTypePosition" />
+          </Key>
+          <Property Name="TYPETRANSACTION" Type="Int32" Nullable="false" />
+          <Property Name="ORDERS" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NUMEROLIGNE" Type="Int32" Nullable="false" />
+          <Property Name="ARTICLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DESIGNATION1" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DESIGNATION2" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="QUANTITE" Type="Int32" />
+          <Property Name="INFO1" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="INFO2" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="INFO3" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="INFO4" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="INFO5" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="INFO6" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ETAT" Type="Int32" />
+          <Property Name="CHECKED" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DATEI" Type="DateTime" Precision="3" />
+          <Property Name="ZTYPACH" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="POHNUM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="POPLIN" Type="Int32" />
+          <Property Name="IdTypePosition" Type="Byte" Nullable="false" />
+          <Property Name="QUANTITERECU" Type="Int32" />
+          <Property Name="INFO7" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="WMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ORDERS" EntityType="Self.ORDERS" />
+          <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" />
+          <FunctionImport Name="GetOrders" ReturnType="Collection(WMSModel.GetOrders_Result)">
+            <Parameter Name="typeCommande" Mode="In" Type="String" />
+            <Parameter Name="centrale" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetOrders_Result">
+          <Property Type="String" Name="ORDERS" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ARTICLE" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="NUMEROLIGNE" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WMSModelStoreContainer" CdmEntityContainer="WMSEntities">
+          <EntitySetMapping Name="ORDERS">
+            <EntityTypeMapping TypeName="WMSModel.ORDERS">
+              <MappingFragment StoreEntitySet="ORDERS">
+                <ScalarProperty Name="ORDERS1" ColumnName="ORDERS" />
+                <ScalarProperty Name="TYPETRANSACTION" ColumnName="TYPETRANSACTION" />
+                <ScalarProperty Name="ORDERCLIENT" ColumnName="ORDERCLIENT" />
+                <ScalarProperty Name="NOMCOLIS" ColumnName="NOMCOLIS" />
+                <ScalarProperty Name="CODECLIENTLIVRE" ColumnName="CODECLIENTLIVRE" />
+                <ScalarProperty Name="RS1" ColumnName="RS1" />
+                <ScalarProperty Name="ADR11" ColumnName="ADR11" />
+                <ScalarProperty Name="ADR12" ColumnName="ADR12" />
+                <ScalarProperty Name="CP1" ColumnName="CP1" />
+                <ScalarProperty Name="VILLE1" ColumnName="VILLE1" />
+                <ScalarProperty Name="PAYS1" ColumnName="PAYS1" />
+                <ScalarProperty Name="RS2" ColumnName="RS2" />
+                <ScalarProperty Name="ADR21" ColumnName="ADR21" />
+                <ScalarProperty Name="ADR22" ColumnName="ADR22" />
+                <ScalarProperty Name="CODETRANSPORTEUR" ColumnName="CODETRANSPORTEUR" />
+                <ScalarProperty Name="COMMENTAIRE1" ColumnName="COMMENTAIRE1" />
+                <ScalarProperty Name="COMMENTAIRE2" ColumnName="COMMENTAIRE2" />
+                <ScalarProperty Name="COMMENTAIRE3" ColumnName="COMMENTAIRE3" />
+                <ScalarProperty Name="COMMENTAIRE4" ColumnName="COMMENTAIRE4" />
+                <ScalarProperty Name="POIDSCOLIS" ColumnName="POIDSCOLIS" />
+                <ScalarProperty Name="ETAT" ColumnName="ETAT" />
+                <ScalarProperty Name="CompteExtand" ColumnName="CompteExtand" />
+                <ScalarProperty Name="Emballage" ColumnName="Emballage" />
+                <ScalarProperty Name="DateHeureFichier" ColumnName="DateHeureFichier" />
+                <ScalarProperty Name="UtilisateurControle" ColumnName="UtilisateurControle" />
+                <ScalarProperty Name="DateHeureControle" ColumnName="DateHeureControle" />
+                <ScalarProperty Name="ORD_D_CREATE" ColumnName="ORD_D_CREATE" />
+                <ScalarProperty Name="NOMCLIENTFINAL" ColumnName="NOMCLIENTFINAL" />
+                <ScalarProperty Name="DateCommandeX3" ColumnName="DateCommandeX3" />
+                <ScalarProperty Name="HeureCommandeX3" ColumnName="HeureCommandeX3" />
+                <ScalarProperty Name="CentraleX3" ColumnName="CentraleX3" />
+                <ScalarProperty Name="NbLigneCmdX3" ColumnName="NbLigneCmdX3" />
+                <ScalarProperty Name="TransporteurX3" ColumnName="TransporteurX3" />
+                <ScalarProperty Name="ModeLivraisonX3" ColumnName="ModeLivraisonX3" />
+                <ScalarProperty Name="PrioriteLivraisonX3" ColumnName="PrioriteLivraisonX3" />
+                <ScalarProperty Name="PoidsNetX3" ColumnName="PoidsNetX3" />
+                <ScalarProperty Name="CmdAvecRX" ColumnName="CmdAvecRX" />
+                <ScalarProperty Name="PackagingX3" ColumnName="PackagingX3" />
+                <ScalarProperty Name="InfoX3_1" ColumnName="InfoX3_1" />
+                <ScalarProperty Name="InfoX3_2" ColumnName="InfoX3_2" />
+                <ScalarProperty Name="InfoX3_3" ColumnName="InfoX3_3" />
+                <ScalarProperty Name="DateDescente" ColumnName="DateDescente" />
+                <ScalarProperty Name="HeureDescente" ColumnName="HeureDescente" />
+                <ScalarProperty Name="PreAxe" ColumnName="PreAxe" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="POSITIONS">
+            <EntityTypeMapping TypeName="WMSModel.POSITIONS">
+              <MappingFragment StoreEntitySet="POSITIONS">
+                <ScalarProperty Name="TYPETRANSACTION" ColumnName="TYPETRANSACTION" />
+                <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                <ScalarProperty Name="NUMEROLIGNE" ColumnName="NUMEROLIGNE" />
+                <ScalarProperty Name="ARTICLE" ColumnName="ARTICLE" />
+                <ScalarProperty Name="DESIGNATION1" ColumnName="DESIGNATION1" />
+                <ScalarProperty Name="DESIGNATION2" ColumnName="DESIGNATION2" />
+                <ScalarProperty Name="QUANTITE" ColumnName="QUANTITE" />
+                <ScalarProperty Name="INFO1" ColumnName="INFO1" />
+                <ScalarProperty Name="INFO2" ColumnName="INFO2" />
+                <ScalarProperty Name="INFO3" ColumnName="INFO3" />
+                <ScalarProperty Name="INFO4" ColumnName="INFO4" />
+                <ScalarProperty Name="INFO5" ColumnName="INFO5" />
+                <ScalarProperty Name="INFO6" ColumnName="INFO6" />
+                <ScalarProperty Name="ETAT" ColumnName="ETAT" />
+                <ScalarProperty Name="CHECKED" ColumnName="CHECKED" />
+                <ScalarProperty Name="DATEI" ColumnName="DATEI" />
+                <ScalarProperty Name="ZTYPACH" ColumnName="ZTYPACH" />
+                <ScalarProperty Name="POHNUM" ColumnName="POHNUM" />
+                <ScalarProperty Name="POPLIN" ColumnName="POPLIN" />
+                <ScalarProperty Name="IdTypePosition" ColumnName="IdTypePosition" />
+                <ScalarProperty Name="QUANTITERECU" ColumnName="QUANTITERECU" />
+                <ScalarProperty Name="INFO7" ColumnName="INFO7" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetOrders" FunctionName="WMSModel.Store.GetOrders">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WMSModel.GetOrders_Result">
+                <ScalarProperty Name="ORDERS" ColumnName="ORDERS" />
+                <ScalarProperty Name="ARTICLE" ColumnName="ARTICLE" />
+                <ScalarProperty Name="NUMEROLIGNE" ColumnName="NUMEROLIGNE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

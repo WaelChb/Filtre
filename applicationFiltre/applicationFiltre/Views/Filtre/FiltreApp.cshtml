@@ -1,0 +1,178 @@
+﻿@{
+    Layout = null;
+}
+@using applicationFiltre
+@using applicationFiltre.Controllers
+@using applicationFiltre.Models
+
+@model applicationFiltre.Models.MyViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @Styles.Render("~/style/W3.css")
+    @Styles.Render("~/style/Style.css")
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Filtre Application </title>
+
+</head>
+<body>
+    <div>
+
+        <div class="container">
+
+            <p style="color:black;">Filtre @ViewBag.Type </p>
+            <img src="https://gifo.org/app/uploads/2017/02/logo_ophtalmic.png" class="imgLogo" />
+            <br />
+
+            <div class="title_color"> </div>
+
+            <div class="all">
+
+                @if (ViewBag.Type == "Lentille")
+                {
+                    <div class="titreNum">
+                        <p>
+                            Critère N° de commande
+                        </p>
+
+                        <div class="check">
+                            <div>
+
+                                @using (Html.BeginForm("GetCheckboxValue", "Filtre", FormMethod.Post))
+                                {
+                                    <input type="hidden" name="type" value="@ViewBag.Type" />
+
+                                    for (int i = 0; i < Model.CheckboxItems.Count; i++)
+                                    {
+                                        <div>
+                                            <label>
+                                                <input type="hidden" name="CheckboxItems[@i].Id" value="@Model.CheckboxItems[i].Id" />
+                                                <input type="hidden" name="CheckboxItems[@i].Label" value="@Model.CheckboxItems[i].Label" />
+                                                <input type="checkbox" onclick="this.form.submit();" name="CheckboxItems[@i].IsChecked" value="true" @(ViewBag.CheckedItemIds != null && ViewBag.CheckedItemIds.Contains(Model.CheckboxItems[i].Id) ? "checked" : "") /> @Model.CheckboxItems[i].Label
+                                            </label>
+                                        </div>
+                                    }
+                                    for (int i = 0; i < Model.CheckboxCentrale.Count; i++)
+                                    {
+                                        <div>
+
+                                            <input type="hidden" name="CheckboxCentrale[@i].Id" value="@Model.CheckboxCentrale[i].Id" />
+                                            <input type="hidden" name="CheckboxCentrale[@i].Label" value="@Model.CheckboxCentrale[i].Label" />
+                                            <div hidden>
+                                                <input type="checkbox" onclick="this.form.submit();" name="CheckboxCentrale[@i].IsChecked" value="true" @(ViewBag.CheckedItemIdsCentrale != null && ViewBag.CheckedItemIdsCentrale.Contains(Model.CheckboxCentrale[i].Id) ? "checked" : "") /> @Model.CheckboxCentrale[i].Label
+
+                                            </div>
+
+                                        </div>
+                                    }
+
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div class="CritereCli @(ViewBag.Type == "Lentille" ? "CritereCli" : "CritereCli2")">
+                    <div class="titre  @(ViewBag.Type == "Lentille" ? "titre" : "titre2")">
+
+                        <p>Critère client</p>
+                    </div>
+                    <div>
+                        <div class="checkbox-container @(ViewBag.Type == "Lentille" ? "checkbox-container" : "checkbox-container2")">
+
+                            @using (Html.BeginForm("GetCheckboxValue", "Filtre", FormMethod.Post))
+                            {
+                                <input type="hidden" name="type" value="@ViewBag.Type" />
+
+                                for (int i = 0; i < Model.CheckboxCentrale.Count; i++)
+                                {
+                                    <div>
+                                        <label>
+                                            <input type="hidden" name="CheckboxCentrale[@i].Id" value="@Model.CheckboxCentrale[i].Id" />
+                                            <input type="hidden" name="CheckboxCentrale[@i].Label" value="@Model.CheckboxCentrale[i].Label" />
+                                            <input type="checkbox" onclick="this.form.submit();" name="CheckboxCentrale[@i].IsChecked" value="true" @(ViewBag.CheckedItemIdsCentrale != null && ViewBag.CheckedItemIdsCentrale.Contains(Model.CheckboxCentrale[i].Id) ? "checked" : "") /> @Model.CheckboxCentrale[i].Label
+                                        </label>
+                                    </div>
+                                }
+                                for (int i = 0; i < Model.CheckboxItems.Count; i++)
+                                {
+                                    <div>
+
+                                        <input type="hidden" name="CheckboxItems[@i].Id" value="@Model.CheckboxItems[i].Id" />
+                                        <input type="hidden" name="CheckboxItems[@i].Label" value="@Model.CheckboxItems[i].Label" />
+
+                                        <div hidden>
+
+                                            <input type="checkbox" onclick="this.form.submit();" name="CheckboxItems[@i].IsChecked" value="true" @(ViewBag.CheckedItemIds != null && ViewBag.CheckedItemIds.Contains(Model.CheckboxItems[i].Id) ? "checked" : "") />
+                                        </div>
+
+
+                                    </div>
+                                }
+
+                            }
+
+                        </div>
+
+                    </div>
+                    <div class="table-container">
+                        <table class="empty-table">
+                            <thead>
+                                <tr>
+
+                                    <th>Commande </th>
+                                    <th>Nb de ligne</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (Model.OrderCount != null)
+                                {
+                                    foreach (var item in Model.OrderCount)
+                                    {
+                                        <tr>
+                                            <td>@item.Orders</td>
+                                            <td>@item.NbOrderLine</td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                @if (ViewBag.Type == "Lentille")
+                {
+                    <div class="annule">
+                        <p>Commande à annuler </p>
+
+                        @using (Html.BeginForm("Annule", "Filtre", FormMethod.Post))
+                        {
+                            <input type="hidden" name="type" value="@ViewBag.Type" />
+
+                            <input class="custom-input" type="text" name="inputAnnule" placeholder="N° de commande">
+                            <div class="valid">
+
+                                <button type="submit" name="confirmation" value="true" onclick="return confirm('Voulez-vous vraiment annuler cette commande ?');"><span> Annuler</span></button>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            <br />
+            <div style="text-align: center;">
+                @using (Html.BeginForm("Valider", "Filtre", FormMethod.Post))
+                {
+                    <button type="submit" name="confirmation" value="true" onclick="return confirm('Voulez-vous vraiment valider les filtres ?');"><span>Valider filtre </span> </button>
+
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

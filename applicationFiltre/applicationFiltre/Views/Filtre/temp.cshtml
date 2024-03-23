@@ -1,0 +1,150 @@
+﻿@{
+                /**/
+
+                Layout = null;
+}
+@using applicationFiltre
+@using applicationFiltre.Controllers
+@using applicationFiltre.Models
+
+@model IEnumerable<applicationFiltre.Models.OrderCount>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @Styles.Render("~/style/W3.css")
+    @Styles.Render("~/style/Style.css")
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Filtre Application </title>
+
+</head>
+<body>
+    <div>
+
+        <div class="container">
+            <p>Filtre @ViewBag.Type </p>
+            <br />
+            <div class="title_color"> </div>
+
+            <div class="all">
+
+                @if (ViewBag.Type == "Lentille")
+                {
+                    <div class="titreNum">
+                        <p>
+                            Critère N° de commande
+                        </p>
+
+                        <div class="check">
+                            <div>
+
+                                @using (Html.BeginForm("GetCheckboxValue", "Filtre", FormMethod.Post, new { id = "critereNumForm" }))
+                                {
+                                    <input type="hidden" name="type" value="@ViewBag.Type" />
+                                    <div>
+                                        <label>
+                                            @Html.CheckBox("checkbox1", false)
+                                            1
+                                        </label>
+                                        <br />
+                                        <label>
+                                            @Html.CheckBox("checkbox2", false)
+                                            4
+                                        </label>
+                                        <br />
+                                        <label>
+                                            @Html.CheckBox("checkbox3", false)
+                                            9
+                                        </label>
+                                    </div>
+                                    <button type="submit">Submit</button> <!-- Bouton de soumission -->
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+                <div class="CritereCli @(ViewBag.Type == "Lentille" ? "CritereCli" : "CritereCli2")">
+                    <div class="titre  @(ViewBag.Type == "Lentille" ? "titre" : "titre2")">
+
+                        <p>Critère client</p>
+                    </div>
+                    <div>
+                        <div class="checkbox-container @(ViewBag.Type == "Lentille" ? "checkbox-container" : "checkbox-container2")">
+
+                            @using (Html.BeginForm("GetCheckboxValue", "Filtre", FormMethod.Post, new { id = "critereClientForm" }))
+                            {
+                                <input type="hidden" name="type" value="@ViewBag.Type" />
+                                <div>
+                                    <label>
+                                        @Html.CheckBox("checkboxLafayette", false)
+                                        La Fayette
+                                    </label>
+                                    <br />
+                                    <label>
+                                        @Html.CheckBox("checkboxAutre", false)
+                                        Autre
+                                    </label>
+
+                                </div>
+                                <button type="submit">Submit</button> <!-- Bouton de soumission -->
+                            }
+
+                        </div>
+
+                    </div>
+                    <div class="table-container">
+                        <table class="empty-table">
+                            <thead>
+                                <tr>
+
+                                    <th>Commande </th>
+                                    <th>Nb de ligne</th>
+                                    <!-- Ajoutez autant d'en-têtes que nécessaire -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.Orders</td>
+                                        <td>@item.NbLigne</td>
+                                    </tr>
+                                }
+                                <!-- Ajoutez autant de lignes que nécessaire -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+
+                @if (ViewBag.Type == "Lentille")
+                {
+                    <div class="annule">
+                        <p>Commande à annuler </p>
+
+
+                        <input class="custom-input" type="text" placeholder="N° de commande">
+                        <div class="valid">
+
+                            <button>Annuler</button>
+
+                        </div>
+
+
+                    </div>
+                }
+            </div>
+            <br />
+            <!-- <div style="text-align: center;">
+                <button>Valider filtre </button>
+            </div> -->
+        </div>
+    </div>
+</body>
+</html>
