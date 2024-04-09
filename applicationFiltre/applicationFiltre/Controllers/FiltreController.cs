@@ -58,55 +58,63 @@ namespace applicationFiltre.Controllers
 							new CheckboxItem { Id = " ", Label = "Autre", IsChecked = false },
 						};
 			}
-			// Pour les CheckboxCritere
-			List<string> checkedIdsListCritere = model.CheckboxItems
-			.Where(item => item.IsChecked)
-			.Select(item => item.Id)
-			.ToList();
-
 			// Pour les CheckboxCentrale
-			List<string> checkedIdsListCentrale = model.CheckboxCentrale
+			List<string> Centrales = model.CheckboxCentrale
 				.Where(item => item.IsChecked)
 				.Select(item => item.Id)
 				.ToList();
 
+			// Pour les CheckboxCritere
+
+			List<string> TypesCommandes;
+
+			if (type == "Verre" && Centrales.Any())
+			{
+				TypesCommandes = new List<string> { "8" };
+			}
+			else
+			{
+				TypesCommandes = model.CheckboxItems
+					.Where(item => item.IsChecked)
+					.Select(item => item.Id)
+					.ToList();
+			}
+
 			FiltreManagement filtre = new FiltreManagement();
 
-			if (checkedIdsListCritere.Any() && !checkedIdsListCentrale.Any())
+			if (TypesCommandes.Any() && !Centrales.Any())
 			{
-				foreach (var item in checkedIdsListCritere)
+				foreach (var item in TypesCommandes)
 				{
 					filtre.GetOrders(item, "");
 				}
 
 			}
-			else if (checkedIdsListCentrale.Contains("L13") && !checkedIdsListCritere.Any())
+			else if (Centrales.Contains("L13") && !TypesCommandes.Any())
 			{
-				foreach (var item in checkedIdsListCentrale)
+				foreach (var item in Centrales)
 				{
 					filtre.GetOrders("1,4,9", item);
 				}
 
 			}
-			else if (checkedIdsListCritere.Any() && checkedIdsListCentrale.Any())
+			else if (TypesCommandes.Any() && Centrales.Any())
 			{
-				foreach (var item in checkedIdsListCritere)
+				foreach (var typeCmd in TypesCommandes)
 				{
-					if (checkedIdsListCentrale.Contains("L13") && checkedIdsListCentrale.Contains(" "))
+					if (Centrales.Contains("L13") && Centrales.Contains(" "))
 					{
 
-					filtre.GetOrders(item, "");
+						filtre.GetOrders(typeCmd, "");
 					}
 					else
 					{
-						filtre.GetOrders(item, "L13");
+						filtre.GetOrders(typeCmd, "L13");
 
 					}
-
 				}
-
 			}
-			
+
 			ViewBag.CheckedItemIds = model.CheckboxItems.Where(item => item.IsChecked).Select(item => item.Id).ToList();
 			ViewBag.CheckedItemIdsCentrale = model.CheckboxCentrale.Where(item => item.IsChecked).Select(item => item.Id).ToList();
 			model.OrderCount = filtre.Orders; 

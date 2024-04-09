@@ -35,12 +35,7 @@ namespace FiltreConsole
 
 						foreach (GetOrders_Result order in orders)
 						{
-							if (string.IsNullOrEmpty(orderNumber))
-							{
-								orderNumber = order.ORDERS;
-								SetOrdersDto(order.ORDERS, orders.Where(o => o.ORDERS.Equals(order.ORDERS)).ToList().Count());
-							}
-							else if (orderNumber != order.ORDERS)
+							if (string.IsNullOrEmpty(orderNumber) || orderNumber != order.ORDERS)
 							{
 								orderNumber = order.ORDERS;
 								SetOrdersDto(order.ORDERS, orders.Where(o => o.ORDERS.Equals(order.ORDERS)).ToList().Count());
