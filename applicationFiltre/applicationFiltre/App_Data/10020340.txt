@@ -1,2 +1,0 @@
-4;E;10020340_1/1;info entête;O;Chariot;N;info1;info2;info3;info4;info5
-4;L;10020340_1/1;2;OPHUNHTE;;1;N;OPHUNHTE;
