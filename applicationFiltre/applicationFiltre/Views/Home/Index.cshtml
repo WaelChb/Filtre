@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@using applicationFiltre
+
+@Styles.Render("~/style/Style.css")
+
+<div>
+    <div class="containerI">
+
+        @Html.ActionLink("Lentille", "FiltreApp", "Filtre", new { type = "Lentille" }, null)
+        @Html.ActionLink("Verre", "FiltreApp", "Filtre", new { type = "Verre" }, null)
+
+    </div>
+    @if (!string.IsNullOrEmpty(ViewBag.NoFilterMessage))
+    {
+        <script>
+        alert('@ViewBag.NoFilterMessage');
+        </script>
+    }
+</div>

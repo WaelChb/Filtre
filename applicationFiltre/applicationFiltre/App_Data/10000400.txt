@@ -1,0 +1,3 @@
+4;E;10000400_1/1;info entête;O;Chariot;N;info1;info2;info3;info4;info5
+4;L;10000400_1/1;2;OPHUNSTE;;1;N;OPHUNSTE;
+4;L;10000400_1/1;1;OPHUNSTE;;1;N;OPHUNSTE;

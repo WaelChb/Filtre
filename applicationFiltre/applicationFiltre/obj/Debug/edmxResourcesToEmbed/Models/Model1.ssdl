@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="LO_zu_ART">
+    <Key>
+      <PropertyRef Name="Lagerort_ID" />
+      <PropertyRef Name="Artikel_ID" />
+    </Key>
+    <Property Name="Lagerort_ID" Type="int" Nullable="false" />
+    <Property Name="Artikel_ID" Type="int" Nullable="false" />
+    <Property Name="Menge" Type="float" Nullable="false" />
+    <Property Name="PlatzTyp" Type="smallint" Nullable="false" />
+    <Property Name="ChargenNr" Type="varchar" MaxLength="50" />
+    <Property Name="IVDatum" Type="datetime" />
+    <Property Name="Benutzer_ID" Type="int" />
+    <Property Name="ReservIn" Type="float" Nullable="false" />
+    <Property Name="ReservOut" Type="float" Nullable="false" />
+    <Property Name="Kostenstelle_ID" Type="int" />
+    <Property Name="Haltbardatum" Type="datetime" />
+    <Property Name="ErzeugungsDatum" Type="datetime" />
+    <Property Name="BewegungsDatum" Type="datetime" />
+    <Property Name="LOGesperrt" Type="tinyint" Nullable="false" />
+    <Property Name="LOSperrgrund" Type="varchar" MaxLength="50" />
+    <Property Name="LagerDatum" Type="datetime" />
+    <Property Name="Werkzeug_ID" Type="int" />
+    <Property Name="MaxBestand" Type="float" />
+    <Property Name="Regal_ID" Type="int" Nullable="false" />
+    <Property Name="Fachboden_ID" Type="int" Nullable="false" />
+    <Property Name="Einteilung_ID" Type="int" Nullable="false" />
+    <Property Name="Position" Type="int" Nullable="false" />
+    <Property Name="Tiefe" Type="int" Nullable="false" />
+    <Property Name="FBefehl_CAR" Type="smallint" />
+    <Property Name="Artikel" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Platzgr_ID" Type="int" Nullable="false" />
+    <Property Name="AutoInventur" Type="float" />
+    <Property Name="Sequencenumber" Type="int" />
+    <Property Name="Zonen" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="ORDERS">
+    <Key>
+      <PropertyRef Name="ORDERS" />
+    </Key>
+    <Property Name="ORDERS" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TYPETRANSACTION" Type="int" Nullable="false" />
+    <Property Name="ORDERCLIENT" Type="varchar" MaxLength="50" />
+    <Property Name="NOMCOLIS" Type="varchar" MaxLength="20" />
+    <Property Name="CODECLIENTLIVRE" Type="varchar" MaxLength="13" />
+    <Property Name="RS1" Type="varchar" MaxLength="40" />
+    <Property Name="ADR11" Type="varchar" MaxLength="70" />
+    <Property Name="ADR12" Type="varchar" MaxLength="35" />
+    <Property Name="CP1" Type="varchar" MaxLength="12" />
+    <Property Name="VILLE1" Type="varchar" MaxLength="34" />
+    <Property Name="PAYS1" Type="varchar" MaxLength="32" />
+    <Property Name="RS2" Type="varchar" MaxLength="32" />
+    <Property Name="ADR21" Type="varchar" MaxLength="35" />
+    <Property Name="ADR22" Type="varchar" MaxLength="35" />
+    <Property Name="CODETRANSPORTEUR" Type="varchar" MaxLength="13" />
+    <Property Name="COMMENTAIRE1" Type="varchar" MaxLength="80" />
+    <Property Name="COMMENTAIRE2" Type="varchar" MaxLength="80" />
+    <Property Name="COMMENTAIRE3" Type="varchar" MaxLength="80" />
+    <Property Name="COMMENTAIRE4" Type="varchar" MaxLength="80" />
+    <Property Name="POIDSCOLIS" Type="float" />
+    <Property Name="ETAT" Type="int" />
+    <Property Name="CompteExtand" Type="char" MaxLength="4" />
+    <Property Name="Emballage" Type="varchar" MaxLength="50" />
+    <Property Name="DateHeureFichier" Type="datetime" />
+    <Property Name="UtilisateurControle" Type="varchar" MaxLength="50" />
+    <Property Name="DateHeureControle" Type="datetime" />
+    <Property Name="ORD_D_CREATE" Type="datetime" />
+    <Property Name="NOMCLIENTFINAL" Type="varchar" MaxLength="50" />
+    <Property Name="DateCommandeX3" Type="varchar" MaxLength="50" />
+    <Property Name="HeureCommandeX3" Type="varchar" MaxLength="50" />
+    <Property Name="CentraleX3" Type="varchar" MaxLength="4" />
+    <Property Name="NbLigneCmdX3" Type="varchar" MaxLength="4" />
+    <Property Name="TransporteurX3" Type="varchar" MaxLength="10" />
+    <Property Name="ModeLivraisonX3" Type="varchar" MaxLength="3" />
+    <Property Name="PrioriteLivraisonX3" Type="varchar" MaxLength="1" />
+    <Property Name="PoidsNetX3" Type="varchar" MaxLength="6" />
+    <Property Name="CmdAvecRX" Type="varchar" MaxLength="1" />
+    <Property Name="PackagingX3" Type="int" />
+    <Property Name="InfoX3_1" Type="varchar" MaxLength="10" />
+    <Property Name="InfoX3_2" Type="varchar" MaxLength="10" />
+    <Property Name="InfoX3_3" Type="int" />
+    <Property Name="DateDescente" Type="varchar" MaxLength="10" />
+    <Property Name="HeureDescente" Type="varchar" MaxLength="4" />
+    <Property Name="PreAxe" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Passerelle">
+    <Key>
+      <PropertyRef Name="EnregUnique" />
+    </Key>
+    <Property Name="EnregUnique" Type="int" Nullable="false" />
+    <Property Name="PasserelleActive" Type="int" />
+    <Property Name="IntervalleTraitement" Type="int" />
+    <Property Name="RepImpCommandes" Type="varchar" MaxLength="255" />
+    <Property Name="RepImpAnnulations" Type="varchar" MaxLength="255" />
+    <Property Name="RepImpReceptions" Type="varchar" MaxLength="255" />
+    <Property Name="MaxFichiersImport" Type="int" />
+    <Property Name="RepImpPP5000" Type="varchar" MaxLength="255" />
+    <Property Name="ExporterSortiesUnitaires" Type="int" />
+    <Property Name="ExporterEntreesUnitaires" Type="int" />
+    <Property Name="ExporterCorrectionsDeStock" Type="int" />
+    <Property Name="RepExpReceptions" Type="varchar" MaxLength="255" />
+    <Property Name="RepExpEntreesUnitaires" Type="varchar" MaxLength="255" />
+    <Property Name="RepExpSortiesUnitaires" Type="varchar" MaxLength="255" />
+    <Property Name="NiveauLog" Type="int" />
+    <Property Name="CheminFichierLog" Type="varchar" MaxLength="255" />
+    <Property Name="TailleMaxFichierLog" Type="int" />
+    <Property Name="HistoriserFichiersHost" Type="int" />
+    <Property Name="RepHistoriqueHost" Type="varchar" MaxLength="255" />
+    <Property Name="HistoriserFichiersPP5000" Type="int" />
+    <Property Name="RepHistoriquePP5000" Type="varchar" MaxLength="255" />
+    <Property Name="PrioriteReserveMaxLignes" Type="int" />
+    <Property Name="PrioriteReserveMaxQtes" Type="int" />
+    <Property Name="DerniereLecture" Type="datetime" />
+    <Property Name="ServerSocket_PC" Type="varchar" MaxLength="50" />
+    <Property Name="ServerSocket_Port" Type="int" />
+  </EntityType>
+  <EntityType Name="POSITIONS">
+    <Key>
+      <PropertyRef Name="ORDERS" />
+      <PropertyRef Name="NUMEROLIGNE" />
+      <PropertyRef Name="IdTypePosition" />
+    </Key>
+    <Property Name="TYPETRANSACTION" Type="int" Nullable="false" />
+    <Property Name="ORDERS" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="NUMEROLIGNE" Type="int" Nullable="false" />
+    <Property Name="ARTICLE" Type="varchar" MaxLength="50" />
+    <Property Name="DESIGNATION1" Type="varchar" MaxLength="40" />
+    <Property Name="DESIGNATION2" Type="varchar" MaxLength="40" />
+    <Property Name="QUANTITE" Type="int" />
+    <Property Name="INFO1" Type="varchar" MaxLength="80" />
+    <Property Name="INFO2" Type="varchar" MaxLength="80" />
+    <Property Name="INFO3" Type="varchar" MaxLength="80" />
+    <Property Name="INFO4" Type="varchar" MaxLength="80" />
+    <Property Name="INFO5" Type="varchar" MaxLength="80" />
+    <Property Name="INFO6" Type="varchar" MaxLength="80" />
+    <Property Name="ETAT" Type="int" />
+    <Property Name="CHECKED" Type="varchar" MaxLength="2" />
+    <Property Name="DATEI" Type="datetime" />
+    <Property Name="ZTYPACH" Type="varchar" MaxLength="50" />
+    <Property Name="POHNUM" Type="varchar" MaxLength="50" />
+    <Property Name="POPLIN" Type="int" />
+    <Property Name="IdTypePosition" Type="tinyint" Nullable="false" />
+    <Property Name="QUANTITERECU" Type="int" />
+    <Property Name="INFO7" Type="varchar" MaxLength="80" />
+  </EntityType>
+  <Function Name="GetOrders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="typeCommande" Type="varchar" Mode="In" />
+    <Parameter Name="centrale" Type="varchar" Mode="In" />
+    <Parameter Name="typeArticle" Type="char" Mode="In" />
+  </Function>
+  <EntityContainer Name="WMSModelStoreContainer">
+    <EntitySet Name="LO_zu_ART" EntityType="Self.LO_zu_ART" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERS" EntityType="Self.ORDERS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Passerelle" EntityType="Self.Passerelle" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="POSITIONS" EntityType="Self.POSITIONS" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
